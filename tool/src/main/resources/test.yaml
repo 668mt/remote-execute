@@ -1,0 +1,13 @@
+tool:
+  method-name: httpRequest
+  params:
+    url: http://localhost:9095/execute
+    method: post
+    headers: "content-type=application/json"
+    body: "{
+               \"methodName\":\"command\",
+            \"params\":{
+            \"command\":\"java -version\"
+            },
+            \"token\":\"-PzrgXeWNX7IA6tOjTCXOA==\"
+            }"
