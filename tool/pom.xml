@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>com.github.668mt.tools</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>core-spring</artifactId>
             <version>${tool.version}</version>
         </dependency>
     </dependencies>

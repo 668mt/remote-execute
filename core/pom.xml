@@ -12,9 +12,14 @@
     <artifactId>core</artifactId>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>com.github.668mt.mos</groupId>-->
+<!--            <artifactId>mos-sdk-spring-boot-starter</artifactId>-->
+<!--            <version>2.1.2</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.github.668mt.mos</groupId>
-            <artifactId>mos-sdk-spring-boot-starter</artifactId>
+            <artifactId>mos-sdk</artifactId>
             <version>2.1.2</version>
         </dependency>
     </dependencies>
