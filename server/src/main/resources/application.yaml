@@ -12,10 +12,10 @@ remote.execute.token: 123456
 
 mos:
   config:
-    host: http://192.168.0.2:6001
-    bucket-name: jenkins
-    open-id: 12
-    secret-key: "-PzrgXeWNX7IA6tOjTCXOA=="
+    host: http://localhost:9700
+    bucket-name: test
+    open-id: 1
+    secret-key: "dd2245522ff1"
 logging:
   file:
     name: ./logs/remote-execute.log
