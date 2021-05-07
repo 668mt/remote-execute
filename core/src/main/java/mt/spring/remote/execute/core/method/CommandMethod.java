@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -38,12 +39,27 @@ public class CommandMethod implements ScriptMethod<String> {
 		for (String com : command.split("&&")) {
 			ExecutorService executorService = Executors.newSingleThreadExecutor();
 			try {
+				File output = null;
+				if(com.contains(" > ")){
+					String[] split = com.split(" > ");
+					com = split[0];
+					output = new File(split[1]);
+					if(!output.isAbsolute() && dirFile != null){
+						output = new File(dirFile, split[1]);
+					}
+					if(!output.getParentFile().exists()){
+						output.getParentFile().mkdirs();
+					}
+				}
 				ProcessBuilder processBuilder = new ProcessBuilder();
 				processBuilder.directory(dirFile);
+				if(output != null){
+					processBuilder.redirectOutput(output);
+				}
 				String[] commands = com.trim().split("\\s+");
 				processBuilder.command(commands);
 				Process process = processBuilder.start();
-				executorService.submit(() -> {
+				Future<?> submit = executorService.submit(() -> {
 					try {
 						InputStream inputStream = process.getInputStream();
 						InputStream errorStream = process.getErrorStream();
@@ -59,6 +75,7 @@ public class CommandMethod implements ScriptMethod<String> {
 						log.error(e.getMessage(), e);
 					}
 				});
+				submit.get(10,TimeUnit.MINUTES);
 				process.waitFor(10, TimeUnit.MINUTES);
 			} finally {
 				executorService.shutdownNow();

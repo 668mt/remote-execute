@@ -15,6 +15,11 @@ public class MethodAutoConfiguration {
 	}
 	
 	@Bean
+	public DeleteFileMethod deleteFileMethod() {
+		return new DeleteFileMethod();
+	}
+	
+	@Bean
 	public CommandMethod commandMethod() {
 		return new CommandMethod();
 	}
